@@ -11,19 +11,26 @@ import java.io.InputStreamReader;
  *
  */
 public class Main {
+	
+	// TODO Available Logger
 
 	public static void main(String[] args) {
 		while (true) {
-			try {
-				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));	
-				String inputCommand = br.readLine();
-				if (inputCommand.equals("exit")) { 
-					break;
-				}
-				System.out.println(inputCommand);
-			} catch (IOException e) {
-				e.getMessage();
+			String input = readConsole();
+			if (input.equals("exit")) { 
+				break;
 			}
+			System.out.println(input);
+		}
+	}
+	
+	private static String readConsole() {
+		try {
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));	
+			String input = br.readLine();
+			return input;
+		} catch (IOException e) {
+			return "Error"; // TODO Error Command pick up form Enum
 		}
 	}
 	
