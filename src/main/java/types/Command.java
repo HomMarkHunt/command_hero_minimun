@@ -4,20 +4,23 @@ import java.util.Arrays;
 
 public enum Command {
 
-	LS("Show Sub Directory", 3, false),
-	CD("Change Directory", 3, false),
-	PWD("Current Directory", 0, false),
-	EXIT("GoodBye!!", 0, true),
-	INVALID("This Command is not Supported", 0, false);
+	LS("Show Sub Directory", 3),
+	CD("Change Directory", 3),
+	PWD("Current Directory", 0),
+	EXIT("GoodBye!!", 0) {
+		@Override
+		public boolean isExit() {
+			return true;
+		}
+	},
+	INVALID("This Command is not Supported", 0);
 
 	private final String message;
 	private final int cutPrefix;
-	private final boolean exitFlg;
 
-	private Command (String message, int cutPrefix, boolean exitFlg) {
+	private Command (String message, int cutPrefix) {
 		this.message = message;
 		this.cutPrefix = cutPrefix;
-		this.exitFlg = exitFlg;
 	}
 
 	public String getMessage() {
@@ -28,8 +31,8 @@ public enum Command {
 		return cutPrefix;
 	}
 	
-	public boolean getExitFlg() {
-		return exitFlg;
+	public boolean isExit() {
+		return false;
 	}
 
 	// XXX think about method name...
